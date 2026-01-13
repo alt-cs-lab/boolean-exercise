@@ -19,8 +19,20 @@ const props = defineProps({
   variables: {
     type: Number,
     required: true
+  },
+  hover: {
+    type: Number,
+    required: true
+  },
+  hoverOver: {
+    type: Function,
+    required: true
   }
 })
+
+function onHover(value) {
+  props.hoverOver(value)
+}
 
 // Import Components
 import TruthValue from '@/components/bool/TruthValue.vue'
@@ -38,7 +50,7 @@ import TruthValue from '@/components/bool/TruthValue.vue'
         </tr>
       </thead>
       <tbody>
-        <tr v-for="i in 4" :key="i" :style="'background-color: ' + props.colors[i-1]">
+        <tr v-for="i in 4" :key="i" :style="'background-color: ' + props.colors[i-1] + '; font-weight: ' + (props.hover == i-1 ? 'bold' : 'normal')" @mouseenter="onHover(i-1)">
           <td><TruthValue :value="((i - 1) >> 1 & 1) == 1" /></td>
           <td><TruthValue :value="((i - 1) & 1) == 1" /></td>
           <td><TruthValue :value="props.binarySet[i-1]" /></td>
@@ -57,7 +69,7 @@ import TruthValue from '@/components/bool/TruthValue.vue'
         </tr>
       </thead>
       <tbody>
-        <tr v-for="i in 8" :key="i" :style="'background-color: ' + props.colors[i-1]">
+        <tr v-for="i in 8" :key="i" :style="'background-color: ' + props.colors[i-1] + '; font-weight: ' + (props.hover == i-1 ? 'bold' : 'normal')" @mouseenter="hoverOver(i-1)">
           <td><TruthValue :value="((i - 1) >> 2 & 1) == 1" /></td>
           <td><TruthValue :value="((i - 1) >> 1 & 1) == 1" /></td>
           <td><TruthValue :value="((i - 1) & 1) == 1" /></td>
@@ -78,7 +90,7 @@ import TruthValue from '@/components/bool/TruthValue.vue'
         </tr>
       </thead>
       <tbody>
-        <tr v-for="i in 16" :key="i" :style="'background-color: ' + props.colors[i-1]">
+        <tr v-for="i in 16" :key="i" :style="'background-color: ' + props.colors[i-1] + '; font-weight: ' + (props.hover == i-1 ? 'bold' : 'normal')" @mouseenter="hoverOver(i-1)">
           <td><TruthValue :value="((i - 1) >> 3 & 1) == 1" /></td>
           <td><TruthValue :value="((i - 1) >> 2 & 1) == 1" /></td>
           <td><TruthValue :value="((i - 1) >> 1 & 1) == 1" /></td>

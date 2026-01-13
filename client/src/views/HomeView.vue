@@ -16,15 +16,19 @@ import VennDiagram from '@/components/VennDiagram.vue'
 // Import Stores
 import { useBooleanStore } from '@/stores/BooleanStore.js'
 const booleanStore = useBooleanStore()
-const { value, variables, isColorSet, isBinarySet } = storeToRefs(booleanStore)
-booleanStore.resetThree()
+const { value, variables, isColorSet, isBinarySet, hover } = storeToRefs(booleanStore)
+booleanStore.reset(3)
+
+function reset() {
+  booleanStore.reset(3)
+}
 </script>
 
 <template>
-  <h1 @click="booleanStore.resetThree">Problem Number {{ value }}</h1>
+  <h1 @click="reset">Problem Number {{ value }}</h1>
 
-  <TruthTable :binarySet="isBinarySet" :variables="variables" :colors="isColorSet"/>
-  <KarnaughMap :binarySet="isBinarySet" :variables="variables" :colors="isColorSet"/>
-  <VennDiagram :binarySet="isBinarySet" :variables="variables" :colors="isColorSet"/>
-  <BooleanStatement :binarySet="isBinarySet" :variables="variables" :colors="isColorSet"/>
+  <TruthTable :binarySet="isBinarySet" :variables="variables" :colors="isColorSet" :hover="hover" :hoverOver="booleanStore.hoverOver"/>
+  <KarnaughMap :binarySet="isBinarySet" :variables="variables" :colors="isColorSet" :hover="hover" :hoverOver="booleanStore.hoverOver"/>
+  <VennDiagram :binarySet="isBinarySet" :variables="variables" :colors="isColorSet" :hover="hover" :hoverOver="booleanStore.hoverOver"/>
+  <BooleanStatement :binarySet="isBinarySet" :variables="variables" :colors="isColorSet" :hover="hover" :hoverOver="booleanStore.hoverOver"/>
 </template>

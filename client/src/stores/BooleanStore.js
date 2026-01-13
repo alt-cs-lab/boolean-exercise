@@ -11,6 +11,7 @@ export const useBooleanStore = defineStore('boolean', () => {
   // State Properties
   const variables = ref(3)
   const value = ref(0)
+  const hover = ref(-1)
 
   // Color Palette
   // https://colorkit.co/palette/e9162d-f28200-ffdb28-1fb819-00e1da-007bd8-8f2be7-fb4fd9/
@@ -63,17 +64,15 @@ export const useBooleanStore = defineStore('boolean', () => {
   })
 
   // Actions
-  function resetThree() {
-    variables.value = 3
-    // set value to random value between 0 and 2^(2^varaibles)-1
+  function reset(vars) {
+    variables.value = vars
+    // set value to random value between 0 and 2^(2^variables)-1
     value.value = Math.floor(Math.random() * Math.pow(2, Math.pow(2, variables.value)))
   }
 
-  function resetFour() {
-    variables.value = 4
-    // set value to random value between 0 and 2^(2^varaibles)-1
-    value.value = Math.floor(Math.random() * Math.pow(2, Math.pow(2, variables.value)))
+  function hoverOver(value) {
+    hover.value = value
   }
 
-  return { variables, value, colors, isColorSet, isBinarySet, resetThree, resetFour }
+  return { variables, value, colors, hover, isColorSet, isBinarySet, reset, hoverOver }
 })

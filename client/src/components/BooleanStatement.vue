@@ -9,7 +9,7 @@
 // Incoming Props
 const props = defineProps({
   binarySet: {
-    type: Number,
+    type: Array,
     required: true
   },
   colors: {
@@ -30,14 +30,21 @@ const props = defineProps({
   </div>
   <div v-if="props.variables === 3">
     <p>
-      <span v-if="props.binarySet[0]" :style="'background-color: ' + props.colors[0]">(¬A ∧ ¬B ∧ ¬C)</span>&nbsp;∨
-      <span v-if="props.binarySet[1]" :style="'background-color: ' + props.colors[1]">(¬A ∧ ¬B ∧ C)</span>&nbsp;∨
-      <span v-if="props.binarySet[2]" :style="'background-color: ' + props.colors[2]">(¬A ∧ B ∧ ¬C)</span>&nbsp;∨
-      <span v-if="props.binarySet[3]" :style="'background-color: ' + props.colors[3]">(¬A ∧ B ∧ C)</span>&nbsp;∨
-      <span v-if="props.binarySet[4]" :style="'background-color: ' + props.colors[4]">(A ∧ ¬B ∧ ¬C)</span>&nbsp;∨
-      <span v-if="props.binarySet[5]" :style="'background-color: ' + props.colors[5]">(A ∧ ¬B ∧ C)</span>&nbsp;∨
-      <span v-if="props.binarySet[6]" :style="'background-color: ' + props.colors[6]">(A ∧ B ∧ ¬C)</span>&nbsp;∨
-      <span v-if="props.binarySet[7]" :style="'background-color: ' + props.colors[7]">(A ∧ B ∧ C)</span>&nbsp;∨
+      <span v-if="props.binarySet[0]" :style="'background-color: ' + props.colors[0]">(¬A ∧ ¬B ∧ ¬C)</span>
+      <span v-if="props.binarySet[0] && props.binarySet.some((x, i) => i > 0 && x)">&nbsp;∨&nbsp;</span>
+      <span v-if="props.binarySet[1]" :style="'background-color: ' + props.colors[1]">(¬A ∧ ¬B ∧ C)</span>
+      <span v-if="props.binarySet[1] && props.binarySet.some((x, i) => i > 1 && x)">&nbsp;∨&nbsp;</span>
+      <span v-if="props.binarySet[2]" :style="'background-color: ' + props.colors[2]">(¬A ∧ B ∧ ¬C)</span>
+      <span v-if="props.binarySet[2] && props.binarySet.some((x, i) => i > 2 && x)">&nbsp;∨&nbsp;</span>
+      <span v-if="props.binarySet[3]" :style="'background-color: ' + props.colors[3]">(¬A ∧ B ∧ C)</span>
+      <span v-if="props.binarySet[3] && props.binarySet.some((x, i) => i > 3 && x)">&nbsp;∨&nbsp;</span>
+      <span v-if="props.binarySet[4]" :style="'background-color: ' + props.colors[4]">(A ∧ ¬B ∧ ¬C)</span>
+      <span v-if="props.binarySet[4] && props.binarySet.some((x, i) => i > 4 && x)">&nbsp;∨&nbsp;</span>
+      <span v-if="props.binarySet[5]" :style="'background-color: ' + props.colors[5]">(A ∧ ¬B ∧ C)</span>
+      <span v-if="props.binarySet[5] && props.binarySet.some((x, i) => i > 5 && x)">&nbsp;∨&nbsp;</span>
+      <span v-if="props.binarySet[6]" :style="'background-color: ' + props.colors[6]">(A ∧ B ∧ ¬C)</span>
+      <span v-if="props.binarySet[6] && props.binarySet.some((x, i) => i > 6 && x)">&nbsp;∨&nbsp;</span>
+      <span v-if="props.binarySet[7]" :style="'background-color: ' + props.colors[7]">(A ∧ B ∧ C)</span>
     </p>
   </div>
   <div v-if="props.variables === 4">
